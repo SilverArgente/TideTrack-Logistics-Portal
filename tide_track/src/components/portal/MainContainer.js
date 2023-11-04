@@ -17,7 +17,6 @@ function MainContainer( { changeToShippingHistory, changeToEditRoutes } ) {
 
             <div class="footer">
                 <button type="button" onClick={changeToEditRoutes}>Edit Routes</button>
-                <button type="button" onClick={changeToShippingHistory}>Shipping History</button>
             </div>
 
         </div>
