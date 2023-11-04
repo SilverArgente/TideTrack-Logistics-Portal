@@ -1,9 +1,11 @@
 import React from "react";
 import "../../css/MainContainer.css";
 
-function MainContainer() {
+function MainContainer( { changeToShippingHistory, changeToEditRoutes } ) {
+
     return (
         <div class="main-container">
+
             <div class="title"><b>TideTrack Logistics Portal</b></div>
 
             <div className="columns">
@@ -11,16 +13,11 @@ function MainContainer() {
                     <p>Current Routes</p>
                     <div>No current routes to display</div>
                 </div>
-
-                <div className="route-history">
-                    <p>Route History</p>
-                    <div>No previous routes to display</div>
-                </div>
             </div>
 
             <div class="footer">
-                <button type="button">View Company Information</button>
-                <button type="button">Shipping History</button>
+                <button type="button" onClick={changeToEditRoutes}>Edit Routes</button>
+                <button type="button" onClick={changeToShippingHistory}>Shipping History</button>
             </div>
 
         </div>
