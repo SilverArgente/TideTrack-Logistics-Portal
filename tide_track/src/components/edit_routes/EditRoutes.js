@@ -1,9 +1,23 @@
 import React, {useState} from "react";
 import {useEffect} from "react";
 
+
 function EditRoutes( {backToPortal, routes} ) {
 
     console.log(routes[0].shipping_id);
+
+    function addRoutes() {
+        let modules = [];
+        for (let i in routes) {
+            modules.push(
+            <div>{routes[i].shipping_id} | {routes[i].start_date} 
+            { } | {routes[i].arrival_date} | {routes[i].source}
+            { } | {routes[i].destination} | {routes[i].shipping_weight}
+            { } | {routes[i].cost} </div>
+            );
+        }
+        return modules;
+    }
 
     return (
         <div className="main-container">
@@ -14,13 +28,9 @@ function EditRoutes( {backToPortal, routes} ) {
             <div className="columns">
                 <div className="current-routes">
                     <p>Edit Current Routes</p>
-                    <div>No current routes to display</div>
+                    {addRoutes()}
                 </div>
 
-                <div className="route-history">
-                    <p>Edit Route History</p>
-                    <div>No previous routes to display</div>
-                </div>
             </div>
 
             <div className="footer">
