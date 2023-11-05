@@ -7,6 +7,7 @@ function App() {
 
   const [portalState, setPortalState] = useState("portal");
   const [routes, setRoutes] = useState();
+  const [rerender, setRerender] = useState();
 
   let displayPage;
 
@@ -15,11 +16,14 @@ function App() {
         .then((res) => res.json())
         .then((data) => {
           setRoutes(data);
+          setRerender("rerender");
         })
         .catch((err) => {
           console.log(err.message);
         });
-  }, []);
+  }, [rerender]);
+
+  console.log(routes);
 
   function toPortal() {
     setPortalState("portal");

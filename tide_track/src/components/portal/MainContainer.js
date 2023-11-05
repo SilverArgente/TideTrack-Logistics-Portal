@@ -1,9 +1,20 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import "../../css/MainContainer.css";
 
 function MainContainer( { changeToEditRoutes, routes} ) {
 
-    // console.log(routes[0]);
+    function addRoutes() {
+        let modules = [];
+        for (let i in routes) {
+            modules.push(
+                <div>{routes[i].shipping_id} | {routes[i].start_date}
+                    { } | {routes[i].arrival_date} | {routes[i].source}
+                    { } | {routes[i].destination} | {routes[i].shipping_weight}
+                    { } | {routes[i].cost} </div>
+            );
+        }
+        return modules;
+    }
 
     return (
         <div className="main-container">
@@ -13,7 +24,7 @@ function MainContainer( { changeToEditRoutes, routes} ) {
             <div className="columns">
                 <div className="current-routes">
                     <p>Current Routes</p>
-                    <div>No current routes to display</div>
+                    <div>{addRoutes()}</div>
                 </div>
             </div>
 
