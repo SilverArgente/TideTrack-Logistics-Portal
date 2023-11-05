@@ -85,4 +85,22 @@
     font-size: 16px; /* Adjust the font size as needed */
 }
 
+/* Add the following CSS to your existing CSS file or style tag */
+
+.delete-button {
+    cursor: pointer;
+    background-color: #ff6347; /* Red background color */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px; /* Adjust padding as needed */
+    font-size: 12px; /* Adjust font size as needed */
+}
+
+.delete-button:hover {
+    background-color: #cc0000; /* Darker red on hover */
+}
+
+
+
 /* Add any additional styles as needed for your specific design */
