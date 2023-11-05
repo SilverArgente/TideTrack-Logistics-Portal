@@ -1,23 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import '../../css/EditRoutes.css';
+import { useRouteContext } from "../../context/RouteContext.js";
 
-function EditRoutes({ backToPortal, routes, changeToCreateRoutes }) {
-    const [rerender, setRerender] = useState(0); // Initialize with 0
-    const [updatedRoutes, setUpdatedRoutes] = useState(routes); // Manage routes
+function EditRoutes({ backToPortal, changeToCreateRoutes }) {
+
+    const { routes, fetchRoutes, deleteRoute, addRoute } = useRouteContext();
+
+    useEffect(() => {
+      fetchRoutes();
+    }, [fetchRoutes]);
 
     function addRoutes() {
         let modules = [];
-        for (let i in updatedRoutes) {
+        for (let i in routes) {
             modules.push(
                 <div key={i} className="route-bar">
-                    <div className="value">{updatedRoutes[i].shipping_id}</div>
-                    <div className="value">{updatedRoutes[i].start_date}</div>
-                    <div className="value">{updatedRoutes[i].arrival_date}</div>
-                    <div className="value">{updatedRoutes[i].source}</div>
-                    <div className="value">{updatedRoutes[i].destination}</div>
-                    <div className="value">{updatedRoutes[i].shipping_weight}</div>
-                    <div className="value">{updatedRoutes[i].cost}</div>
-                    <button className="delete-button" onClick={() => handleDeleteColumn(updatedRoutes[i].shipping_id)}>X</button>
+                    <div className="value">{routes[i].shipping_id}</div>
+                    <div className="value">{routes[i].start_date}</div>
+                    <div className="value">{routes[i].arrival_date}</div>
+                    <div className="value">{routes[i].source}</div>
+                    <div className="value">{routes[i].destination}</div>
+                    <div className="value">{routes[i].shipping_weight}</div>
+                    <div className="value">{routes[i].cost}</div>
+                    <button className="delete-button" onClick={() =>
+                                handleDeleteColumn(routes[i].shipping_id)}>X</button>
                 </div>
             );
         }
@@ -25,26 +31,7 @@ function EditRoutes({ backToPortal, routes, changeToCreateRoutes }) {
     }
 
     function handleDeleteColumn(id) {
-        fetch(`http://159.89.252.189:3000/routes/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Column deleted successfully', data);
-                // Update the routes to exclude the deleted entry
-                setUpdatedRoutes(updatedRoutes.filter(route => route.shipping_id !== id));
-            })
-            .catch(error => {
-                console.error('Error deleting column:', error);
-            });
+      deleteRoute(id);
     }
 
     return (

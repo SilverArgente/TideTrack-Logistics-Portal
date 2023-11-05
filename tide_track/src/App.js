@@ -3,28 +3,13 @@ import {useEffect, useState} from "react";
 import MainContainer from "./components/portal/MainContainer";
 import EditRoutes from "./components/edit_routes/EditRoutes";
 import AddRoutes from "./components/edit_routes/AddRoutes";
+import { RouteProvider } from "./context/RouteContext.js";
 
 function App() {
 
   const [portalState, setPortalState] = useState("portal");
-  const [routes, setRoutes] = useState();
-  const [rerender, setRerender] = useState();
 
   let displayPage;
-
-  useEffect(() => {
-    fetch('http://159.89.252.189:3000/routes')
-        .then((res) => res.json())
-        .then((data) => {
-          setRoutes(data);
-          setRerender("rerender");
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-  }, [rerender]);
-
-  console.log(routes);
 
   function toPortal() {
     setPortalState("portal");
@@ -39,7 +24,7 @@ function App() {
   }
 
   function toCreateRoutes() {
-      setPortalState("create routes");
+    setPortalState("create routes");
   }
 
   switch (portalState) {
@@ -48,11 +33,10 @@ function App() {
       displayPage = <MainContainer
           changeToShippingHistory={toShippingHistory}
           changeToEditRoutes={toEditRoutes}
-          routes={routes}
         />;
       break;
     case "edit routes":
-      displayPage = <EditRoutes backToPortal={toPortal} routes={routes} changeToCreateRoutes={toCreateRoutes}/>
+      displayPage = <EditRoutes backToPortal={toPortal} changeToCreateRoutes={toCreateRoutes}/>
       break;
       case "create routes":
         displayPage = <AddRoutes backToPortal={toPortal}/>
@@ -64,7 +48,9 @@ function App() {
   }
 
   return (
-      displayPage
+      <RouteProvider>
+          {displayPage}
+      </RouteProvider>
   );
 
 }

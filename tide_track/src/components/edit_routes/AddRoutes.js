@@ -1,7 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../css/AddRoutes.css";
+import { useRouteContext } from "../../context/RouteContext.js";
 
 export default function AddRoutes({ backToPortal }) {
+    const { routes, fetchRoutes, deleteRoute, addRoute } = useRouteContext();
+
+    const [submitted, setSubmitted] = useState(false);
+    const [effectTriggered, setEffectTriggered] = useState(false);
+
+
     const [formData, setFormData] = useState({
         shippingID: "",
         startDate: "",
@@ -17,42 +24,18 @@ export default function AddRoutes({ backToPortal }) {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = () => {
-        // Construct the data to send to the API
-        const dataToSend = {
-            shipping_id: formData.shippingID,
-            start_date: formData.startDate,
-            arrival_date: formData.arrivalDate,
-            source: formData.source,
-            destination: formData.destination,
-            shipping_weight: formData.shippingWeight,
-            cost: formData.cost,
-            completed: true
-        };
-
-        // Make the API call using fetch
-        fetch("http://159.89.252.189:3000/routes", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(dataToSend),
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                return response.json();
-            })
-            .then((data) => {
-                console.log("Data sent successfully:", data);
-                // Optionally, you can perform actions after a successful submission.
-            })
-            .catch((error) => {
-                console.error("Error sending data:", error);
-                // Handle errors, e.g., show an error message to the user.
-            });
+    const handleSubmitted = () => {
+      setSubmitted(true);
     };
+
+    useEffect(() => {
+      if (submitted && !effectTriggered) {
+        console.log('useEffect triggered');
+        setEffectTriggered(true); // Mark the effect as triggered
+        addRoute(formData);
+        backToPortal();
+      }
+    }, [submitted, effectTriggered]);
 
     return (
         <div className="main-container">
@@ -145,7 +128,7 @@ export default function AddRoutes({ backToPortal }) {
                 <button type="button" onClick={backToPortal}>
                     Back to Portal
                 </button>
-                <button type="button" onClick={handleSubmit}>
+                <button type="button" onClick={handleSubmitted}>
                     Submit
                 </button>
             </div>

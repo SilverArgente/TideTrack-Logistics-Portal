@@ -1,7 +1,13 @@
 import React, {useEffect, useState} from "react";
 import "../../css/MainContainer.css";
+import { useRouteContext } from "../../context/RouteContext.js";
 
-function MainContainer( { changeToEditRoutes, routes} ) {
+function MainContainer( { changeToEditRoutes } ) {
+    const { routes, fetchRoutes, deleteRoute, addRoute } = useRouteContext();
+
+    useEffect(() => {
+      fetchRoutes();
+    }, [fetchRoutes]);
 
     function addRoutes() {
         let modules = [];
