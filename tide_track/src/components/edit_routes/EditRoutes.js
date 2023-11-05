@@ -1,6 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
+import {useEffect} from "react";
 
 function EditRoutes( {backToPortal} ) {
+
+    const [routeInfo, setRouteInfo] = useState([[]]);
+
     return (
         <div className="main-container">
 
