@@ -44,7 +44,6 @@
     margin-bottom: 40px; /* Add space below the buttons */
 }
 
-
 .footer button {
     padding: 10px 20px; /* Adjust the padding to set the button size */
     font-size: 16px; /* Set the button text size */
@@ -58,3 +57,32 @@
 .footer button:hover {
     background-color: #808080;
 }
+
+/* CSS code */
+.route-bar {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+}
+
+.value-description,
+.value {
+    flex: 1;
+}
+
+.value-description {
+    color: #666; /* Adjust the color as needed */
+    font-size: 12px; /* Adjust the font size as needed */
+}
+
+.value {
+    font-size: 16px; /* Adjust the font size as needed */
+}
+
+/* Add any additional styles as needed for your specific design */

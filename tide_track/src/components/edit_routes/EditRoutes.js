@@ -10,10 +10,15 @@ function EditRoutes( {backToPortal, routes} ) {
         let modules = [];
         for (let i in routes) {
             modules.push(
-            <div>{routes[i].shipping_id} | {routes[i].start_date} 
-            { } | {routes[i].arrival_date} | {routes[i].source}
-            { } | {routes[i].destination} | {routes[i].shipping_weight}
-            { } | {routes[i].cost} </div>
+                <div key={i} className="route-bar">
+                    <div className="value">{routes[i].shipping_id}</div>
+                    <div className="value">{routes[i].start_date}</div>
+                    <div className="value">{routes[i].arrival_date}</div>
+                    <div className="value">{routes[i].source}</div>
+                    <div className="value">{routes[i].destination}</div>
+                    <div className="value">{routes[i].shipping_weight}</div>
+                    <div className="value">{routes[i].cost}</div>
+                </div>
             );
         }
         return modules;
@@ -28,7 +33,16 @@ function EditRoutes( {backToPortal, routes} ) {
             <div className="columns">
                 <div className="current-routes">
                     <p>Edit Current Routes</p>
-                    {addRoutes()}
+                    <div className="route-bar">
+                        <div className="value-description">Shipping ID</div>
+                        <div className="value-description">Start Date</div>
+                        <div className="value-description">Arrival Date</div>
+                        <div className="value-description">Source</div>
+                        <div className="value-description">Destination</div>
+                        <div className="value-description">Shipping Weight</div>
+                        <div className="value-description">Cost</div>
+                    </div>
+                    <div>{addRoutes()}</div>
                 </div>
 
             </div>
