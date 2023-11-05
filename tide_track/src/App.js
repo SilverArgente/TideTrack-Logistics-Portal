@@ -2,6 +2,7 @@ import './css/App.css';
 import {useEffect, useState} from "react";
 import MainContainer from "./components/portal/MainContainer";
 import EditRoutes from "./components/edit_routes/EditRoutes";
+import AddRoutes from "./components/edit_routes/AddRoutes";
 
 function App() {
 
@@ -37,6 +38,10 @@ function App() {
     setPortalState("edit routes")
   }
 
+  function toCreateRoutes() {
+      setPortalState("create routes");
+  }
+
   switch (portalState) {
 
     case "portal":
@@ -47,8 +52,11 @@ function App() {
         />;
       break;
     case "edit routes":
-      displayPage = <EditRoutes backToPortal={toPortal} routes={routes} />
+      displayPage = <EditRoutes backToPortal={toPortal} routes={routes} changeToCreateRoutes={toCreateRoutes}/>
       break;
+      case "create routes":
+        displayPage = <AddRoutes backToPortal={toPortal}/>
+        break;
     default:
       displayPage = <p>An error has occurred</p>;
       break;

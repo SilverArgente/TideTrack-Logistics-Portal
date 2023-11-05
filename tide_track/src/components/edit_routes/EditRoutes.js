@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import '../../css/EditRoutes.css';
 
-function EditRoutes({ backToPortal, routes }) {
+function EditRoutes({ backToPortal, routes, changeToCreateRoutes }) {
     const [rerender, setRerender] = useState(0); // Initialize with 0
     const [updatedRoutes, setUpdatedRoutes] = useState(routes); // Manage routes
 
@@ -67,7 +67,7 @@ function EditRoutes({ backToPortal, routes }) {
                 </div>
             </div>
             <div className="footer">
-                <button type="button">Create Route</button>
+                <button type="button" onClick={changeToCreateRoutes}>Create Route</button>
                 <button type="button" onClick={backToPortal}>Back to Portal</button>
             </div>
         </div>
