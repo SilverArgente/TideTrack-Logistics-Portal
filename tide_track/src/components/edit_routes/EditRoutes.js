@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import {useEffect} from "react";
 
-function EditRoutes( {backToPortal} ) {
+function EditRoutes( {backToPortal, routes} ) {
 
-    const [routeInfo, setRouteInfo] = useState([[]]);
+    console.log(routes[0].shipping_id);
 
     return (
         <div className="main-container">

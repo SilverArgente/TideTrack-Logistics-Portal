@@ -1,26 +1,14 @@
 import React, {useEffect} from "react";
 import "../../css/MainContainer.css";
 
-function MainContainer( { changeToShippingHistory, changeToEditRoutes } ) {
+function MainContainer( { changeToEditRoutes, routes} ) {
 
-    useEffect(() => {
-        fetch('http://159.89.252.189:3000/routes')
-            .then((res) => res.json())
-            .then((data) => {
-
-                console.log(data);
-                // setRouteInfo(data.map(current) => current.);
-
-            })
-            .catch((err) => {
-                console.log(err.message);
-            });
-    }, []);
+    // console.log(routes[0]);
 
     return (
-        <div class="main-container">
+        <div className="main-container">
 
-            <div class="title"><b>TideTrack Logistics Portal</b></div>
+            <div className="title"><b>TideTrack Logistics Portal</b></div>
 
             <div className="columns">
                 <div className="current-routes">
@@ -29,7 +17,7 @@ function MainContainer( { changeToShippingHistory, changeToEditRoutes } ) {
                 </div>
             </div>
 
-            <div class="footer">
+            <div className="footer">
                 <button type="button" onClick={changeToEditRoutes}>Edit Routes</button>
             </div>
 
