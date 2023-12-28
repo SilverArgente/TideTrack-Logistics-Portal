@@ -7,12 +7,18 @@ A tool for shipping and logistics companies to plan and create future shipping r
 
 ## Installation
 
-Install npm and electron, then run
+Install npm and node. Then, clone the repository, and navigate to the tide_track folder. 
+<br>Once inside, install the dependencies by running:
 ```
-npm run start
+npm install
 ```
 
 Then, in the same directory, run
+```
+npm start
+```
+This will start the react application. This will allow you to use the app in a web browser. 
+<br>To launch it with electron, run the previous cmd and then run:
 ```
 npm run electron
 ```
